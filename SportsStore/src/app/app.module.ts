@@ -7,6 +7,8 @@ import { CheckoutComponent } from "./store/checkout.component";
 import { CartDetailComponent } from "./store/cartDetail.component";
 import { RouterModule } from "@angular/router";
 import { StoreFirstGuard } from "./storeFirst.guard";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +17,10 @@ import { StoreFirstGuard } from "./storeFirst.guard";
       { path: "store", component: StoreComponent, canActivate: [StoreFirstGuard] },
       { path: "cart", component: CartDetailComponent, canActivate: [StoreFirstGuard] },
       { path: "checkout", component: CheckoutComponent, canActivate: [StoreFirstGuard] },
-      {path: "admin",loadChildren: "./admin/admin.module#AdminModule",canActivate: [StoreFirstGuard]},
+      { path: "admin",loadChildren: "./admin/admin.module#AdminModule",canActivate: [StoreFirstGuard]},
       { path: "**", redirectTo: "/store" }
-    ])],
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   bootstrap: [AppComponent],
   providers: [StoreFirstGuard]
 })

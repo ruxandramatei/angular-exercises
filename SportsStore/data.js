@@ -51,6 +51,6 @@ module.exports = function () {
                 price: 1200
             }
         ],
-        ordres: []
+        orders: []
     }
 }
