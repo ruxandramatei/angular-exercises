@@ -27,7 +27,6 @@ let routing = RouterModule.forChild([
 @NgModule({
     imports: [CommonModule, FormsModule, routing],
     providers: [AuthGuard],
-    declarations: [AuthComponent, AdminComponent,
-        ProductTableComponent, ProductEditorComponent, OrderTableComponent]
+    declarations: [AuthComponent, AdminComponent, ProductTableComponent, ProductEditorComponent, OrderTableComponent]
 })
-export class AdminModule {}
+export class AdminModule { }
