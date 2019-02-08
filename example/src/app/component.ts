@@ -1,5 +1,5 @@
 import { Model } from "./repository.model";
-import { ApplicationRef, Component } from "@angular/core" 
+import { ApplicationRef, Component } from "@angular/core"
 import { Product } from "./product.model"
 
 @Component({
@@ -9,11 +9,11 @@ import { Product } from "./product.model"
 export class ProductComponent {
     model: Model = new Model();
 
-    constructor(ref: ApplicationRef){
+    constructor(ref: ApplicationRef) {
         (<any>window).appRef = ref;
         (<any>window).model = this.model;
     }
-    
+
     // getClasses(key: number): string{
     //     let product = this.model.getProduct(key);
     //     return "p-2 "+(product.price < 50 ? "bg-info" : "bg-warning");
@@ -39,13 +39,13 @@ export class ProductComponent {
     //     };
     // }
 
-    getProductByPosition(position: number): Product{
+    getProductByPosition(position: number): Product {
         return this.model.getProducts()[position];
     }
 
     getClassesByPosition(position: number): string {
         let product = this.getProductByPosition(position);
-        return "p-2" + (product.price < 50 ? " bg-info": " bg-warning");
+        return "p-2" + (product.price < 50 ? " bg-info" : " bg-warning");
     }
 
     getProduct(key: number): Product {
@@ -57,8 +57,22 @@ export class ProductComponent {
     }
 
     getProductCount(): number {
+        console.log("getProductCount invoked");
         return this.getProducts().length;
     }
-    
+
+    getKey(index: number, product: Product) {
+        return product.id;
+    }
+
+    get nextProduct(): Product {
+        return this.model.getProducts().shift();
+    }
+
+    getProductPrice(index: number): number {
+        return Math.floor(this.getProduct(index).price);
+    }
+
     targetName: string = "Kayak";
+    counter: number = 1;
 }
