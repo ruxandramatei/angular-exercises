@@ -18,14 +18,10 @@
         </table>
         <div class="form-group">
                 <label>Product Name</label>
-                <input class="form-control" 
-                (input)="selectedProduct=$event.target.value" 
-                [value]="selectedProduct || null" />
+                <input class="form-control" [(ngModel)]="selectedProduct" />
         </div>
         <div class="form-group">
                 <label>Product Name</label>
-                <input class="form-control" 
-                (input)="selectedProduct=$event.target.value" 
-                [value]="selectedProduct || null" />
+                <input class="form-control" [(ngModel)]="selectedProduct" />
         </div>
 </div>
