@@ -37,5 +37,5 @@ export class ProductComponent {
             this.formSubmitted = false;
         }
     }
-
+    showTable: boolean = true;
 }
