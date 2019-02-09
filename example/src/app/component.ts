@@ -2,6 +2,7 @@ import { ApplicationRef, Component } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
 import { NgForm } from "@angular/forms"
+import { ProductFormGroup } from "./form.model"
 
 @Component({
     selector: "app",
@@ -9,6 +10,7 @@ import { NgForm } from "@angular/forms"
 })
 export class ProductComponent {
     model: Model = new Model();
+    form: ProductFormGroup = new ProductFormGroup();
 
     getProduct(key: number): Product {
         return this.model.getProduct(key);
@@ -28,29 +30,29 @@ export class ProductComponent {
         console.log("New Product: " + this.jsonProduct);
     }
 
-    getValidationMessages(state: any, thingName?: string) {
-        let thing: string = state.path || thingName;
-        let messages: string[] = [];
-        if (state.errors) {
-            for (let errorName in state.errors) {
-                switch (errorName) {
-                    case "required":
-                        messages.push(`You must enter a ${thing}`);
-                        break;
-                    case "minlength":
-                        messages.push(`A ${thing} must be at least
-                            ${state.errors['minlength'].requiredLength}
-                            characters`);
-                        break;
-                    case "pattern":
-                        messages.push(`The ${thing} contains
-                             illegal characters`);
-                        break;
-                }
-            }
-        }
-        return messages;
-    }
+    // getValidationMessages(state: any, thingName?: string) {
+    //     let thing: string = state.path || thingName;
+    //     let messages: string[] = [];
+    //     if (state.errors) {
+    //         for (let errorName in state.errors) {
+    //             switch (errorName) {
+    //                 case "required":
+    //                     messages.push(`You must enter a ${thing}`);
+    //                     break;
+    //                 case "minlength":
+    //                     messages.push(`A ${thing} must be at least
+    //                         ${state.errors['minlength'].requiredLength}
+    //                         characters`);
+    //                     break;
+    //                 case "pattern":
+    //                     messages.push(`The ${thing} contains
+    //                          illegal characters`);
+    //                     break;
+    //             }
+    //         }
+    //     }
+    //     return messages;
+    // }
     formSubmitted: boolean = false;
     submitForm(form: NgForm) {
         this.formSubmitted = true;
@@ -62,12 +64,11 @@ export class ProductComponent {
         }
     }
 
-    getFormValidationMessages(form: NgForm): string[] {
-        let messages: string[] = [];
-        Object.keys(form.controls).forEach(k => {
-            this.getValidationMessages(form.controls[k], k)
-                .forEach(m => messages.push(m));
-        });
-        return messages;
-    }
+    // getFormValidationMessages(form: NgForm): string[]{
+    //     let messages: string[] = [];
+    //     Object.keys(form.controls).forEach(k => {
+    //         this.getValidationMessages(form.controls[k], k).forEach(m => messages.push(m));
+    //     });
+    //     return messages;
+    // }
 }
