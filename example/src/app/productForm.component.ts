@@ -2,10 +2,12 @@ import { Component, Output, EventEmitter, ViewEncapsulation } from "@angular/cor
 import { Product } from "./product.model";
 import { ProductFormGroup } from "./form.model";
 import { Model } from "./repository.model";
+import { VALUE_SERVICE } from "./valueDisplay.directive";
 
 @Component({
     selector: "paProductForm",
     templateUrl: "productForm.component.html",
+    viewProviders: [{provide: VALUE_SERVICE, useValue: "Oranges"}]
     // styleUrls: ["productForm.component.css"],
     // encapsulation: ViewEncapsulation.Emulated
 })
