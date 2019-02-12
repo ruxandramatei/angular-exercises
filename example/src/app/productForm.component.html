@@ -9,7 +9,10 @@
             </li>
         </ul>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && !form.valid" [class.btn-secondary]="formSubmitted && !form.valid">
+    <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && !form.valid"
+        [class.btn-secondary]="formSubmitted && !form.valid">
         Create
     </button>
 </form>
+<paDiscountEditor></paDiscountEditor>
+<paDiscountDisplay></paDiscountDisplay>

@@ -19,14 +19,18 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { PaDiscountDisplayComponent } from "./discountDisplay.component";
 import { PaDiscountEditorComponent } from "./discountEditor.component";
+import { DiscountService } from "./discount.service";
+import { PaDiscountPipe } from "./discount.pipe";
+import { PaDiscountAmountDirective } from "./discountAmount.directive";
 
 registerLocaleData(localeFr);
 
 @NgModule({
     declarations: [ProductComponent, PaAttrDirective, PaModel, PaStructureDirective, PaIteratorDirective, PaCellColor, PaCellColorSwitcher,
-        ProductFormComponent, ProductTableComponent, PaToggleView, PaAddTaxPipe, PaCategoryFilterPipe, PaDiscountDisplayComponent, PaDiscountEditorComponent],
+        ProductFormComponent, ProductTableComponent, PaToggleView, PaAddTaxPipe, PaCategoryFilterPipe, PaDiscountDisplayComponent,
+        PaDiscountEditorComponent, PaDiscountPipe, PaDiscountAmountDirective],
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
-    //providers: [{provide: LOCALE_ID, useValue: "fr-FR"}],
+    providers: [DiscountService],
     bootstrap: [ProductComponent]
 })
 export class AppModule {

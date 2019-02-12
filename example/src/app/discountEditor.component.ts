@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { DiscountService } from "./discount.service";
+
 @Component({
     selector: "paDiscountEditor",
     template: `<div class="form-group">
@@ -9,6 +10,9 @@ import { DiscountService } from "./discount.service";
                </div>`
 })
 export class PaDiscountEditorComponent {
-    @Input("discounter")
-    discounter: DiscountService;
+
+    constructor(private discounter: DiscountService) {
+
+    }
+
 }
