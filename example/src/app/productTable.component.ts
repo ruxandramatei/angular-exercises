@@ -9,8 +9,12 @@ import { DiscountService } from "./discount.service";
 })
 export class ProductTableComponent {
     //discounter: DiscountService = new DiscountService();
-    @Input("model")
-    dataModel: Model;
+    // @Input("model")
+    // dataModel: Model;
+
+    constructor(private dataModel: Model){
+        
+    }
 
     getProduct(key: number): Product {
         return this.dataModel.getProduct(key);

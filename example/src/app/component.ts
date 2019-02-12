@@ -1,8 +1,7 @@
-import { ApplicationRef, Component } from "@angular/core";
-import { Model } from "./repository.model";
-import { Product } from "./product.model";
-import { NgForm } from "@angular/forms"
-import { ProductFormGroup } from "./form.model"
+import { Component } from "@angular/core";
+// import { Model } from "./repository.model";
+// import { Product } from "./product.model";
+// import { ProductFormGroup } from "./form.model"
 
 @Component({
     selector: "app",
@@ -12,11 +11,11 @@ import { ProductFormGroup } from "./form.model"
 export class ProductComponent {
    // model: Model = new Model();
 
-    constructor(private model: Model){
-        
-    }
+    // constructor(private model: Model){
 
-    addProduct(p: Product) {
-        this.model.saveProduct(p);
-    }
+    // }
+
+    // addProduct(p: Product) {
+    //     this.model.saveProduct(p);
+    // }
 }
