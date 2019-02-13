@@ -28,7 +28,6 @@ export class FormComponent {
                 }
                 this.editing = update.mode == MODES.EDIT;
             });
-
         }
 
     submitForm(form: NgForm) {
