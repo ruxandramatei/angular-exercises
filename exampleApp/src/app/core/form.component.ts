@@ -4,7 +4,7 @@ import { Product } from "../model/product.model";
 import { Model } from "../model/repository.model";
 import { MODES, SharedState, SHARED_STATE } from "./sharedState.model";
 import { Observable } from "rxjs";
-import { filter, map } from "rxjs/operators";
+import { filter, map, distinctUntilChanged } from "rxjs/operators";
 
 
 @Component({
@@ -19,13 +19,14 @@ export class FormComponent {
 
     constructor(private model: Model,
         @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>) { 
-            stateEvents.pipe(map(state => state.mode == MODES.EDIT ? state.id : 1)).pipe(filter(id => id != 3)).subscribe((id) => {
-                this.editing = id != -1;
+            stateEvents.pipe(distinctUntilChanged((firstState, secondState) => firstState.mode == secondState.mode && firstState.id == secondState.id))
+            .subscribe((update) => {
                 this.product = new Product();
-                if(id != -1){
-                    Object.assign(this.product, this.model.getProduct(id));
+                if(update.id != undefined){
+                    Object.assign(this.product, this.model.getProduct(update.id));
                 }
-            })
+                this.editing = update.mode == MODES.EDIT;
+            });
 
         }
 
