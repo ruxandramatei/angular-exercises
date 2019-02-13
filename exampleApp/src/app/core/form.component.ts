@@ -19,6 +19,10 @@ export class FormComponent {
 
     constructor(private model: Model, activeRoute: ActivatedRoute){
         this.editing = activeRoute.snapshot.params["mode"] == "edit";
+        let id = activeRoute.snapshot.params["id"];
+        if(id != null){
+            Object.assign(this.product, model.getProduct(id) || new Product());
+        }
     }
 
     submitForm(form: NgForm) {
