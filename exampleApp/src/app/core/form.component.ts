@@ -4,8 +4,8 @@ import { Product } from "../model/product.model";
 import { Model } from "../model/repository.model";
 import { MODES, SharedState, SHARED_STATE } from "./sharedState.model";
 import { Observable } from "rxjs";
-import { filter, map, distinctUntilChanged, skipWhile } from "rxjs/operators";
-
+//import { filter, map, distinctUntilChanged, skipWhile } from "rxjs/operators";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "paForm",
@@ -17,16 +17,9 @@ export class FormComponent {
     editing: boolean = false;
     //lastID: number;
 
-    constructor(private model: Model,
-        @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>) { 
-            stateEvents.subscribe((update) => {
-                this.product = new Product();
-                if(update.id != undefined){
-                    Object.assign(this.product, this.model.getProduct(update.id));
-                }
-                this.editing = update.mode == MODES.EDIT;
-            });
-        }
+    constructor(private model: Model, activeRoute: ActivatedRoute){
+        this.editing = activeRoute.snapshot.url[1].path == "edit";
+    }
 
     submitForm(form: NgForm) {
         if (form.valid) {
