@@ -18,7 +18,7 @@ export class FormComponent {
     //lastID: number;
 
     constructor(private model: Model, activeRoute: ActivatedRoute){
-        this.editing = activeRoute.snapshot.url[1].path == "edit";
+        this.editing = activeRoute.snapshot.params["mode"] == "edit";
     }
 
     submitForm(form: NgForm) {
