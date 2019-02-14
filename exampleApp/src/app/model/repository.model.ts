@@ -3,6 +3,7 @@ import { Product } from "./product.model";
 //import { StaticDataSource } from "./static.datasource";
 import { Observable } from "rxjs";
 import { RestDataSource } from "./rest.datasource";
+import { RouteReuseStrategy } from '@angular/router';
 
 @Injectable()
 export class Model {
@@ -19,6 +20,24 @@ export class Model {
 
     getProduct(id: number): Product {
         return this.products.find(p => this.locator(p, id));
+    }
+
+    getNextProductId(id: number): number{
+        let index = this.products.findIndex(p => this.locator(p, id));
+        if(index > -1){
+            return this.products[this.products.length > index + 2 ? index + 1: 0].id;
+        }else{
+            return id || 0;
+        }
+    }
+
+    getPreviousProductid(id: number): number{
+        let index = this.products.findIndex(p => this.locator(p, id));
+        if(index > -1){
+            return this.products[index > 0 ? index - 1: this.products.length - 1].id;
+        }else{
+            return id || 0;
+        }
     }
 
     saveProduct(product: Product) {
