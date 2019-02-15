@@ -16,12 +16,10 @@ export const HighlightTrigger = trigger("rowHighlight", [
         color: "black"
     }])),
     state("void", style({
-        opacity: 0
+        transform: "translateX(-50%)"
+        //transform: "scale(1.1, 1.1) rotate(10deg)"
     })),
     transition("* => notselected", animate("200ms")),
-    transition("* => selected",
-        [animate("400ms 200ms ease-in", style({ backgroundColor: "lightblue", fontSize: "25px" })),
-        group([animate("250ms", style({ backgroundColor: "lightcoral" })), animate("450ms", style({ fontSize: "30px" }))]),
-        animate("200ms")]),
+    transition("* => selected", animate("400ms 200ms ease-in")),
     transition("void => *", animate("500ms"))
 ]);
