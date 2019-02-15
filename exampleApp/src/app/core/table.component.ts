@@ -1,8 +1,6 @@
-import { Component, Inject } from "@angular/core";
+﻿import { Component, Inject } from "@angular/core";
 import { Product } from "../model/product.model";
 import { Model } from "../model/repository.model";
-//import { MODES, SharedState, SHARED_STATE } from "./sharedState.model";
-//import { Observer } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -10,7 +8,6 @@ import { ActivatedRoute } from "@angular/router";
     templateUrl: "table.component.html"
 })
 export class TableComponent {
-
     category: string = null;
 
     constructor(private model: Model, activeRoute: ActivatedRoute) {
@@ -27,6 +24,7 @@ export class TableComponent {
         return this.model.getProducts()
             .filter(p => this.category == null || p.category == this.category);
     }
+
     get categories(): string[] {
         return this.model.getProducts()
             .map(p => p.category)
@@ -36,13 +34,4 @@ export class TableComponent {
     deleteProduct(key: number) {
         this.model.deleteProduct(key);
     }
-
-    // editProduct(key: number){
-    //     this.observer.next(new SharedState(MODES.EDIT, key));
-    // }
-
-    // createProduct(){
-    //     this.observer.next(new SharedState(MODES.CREATE));
-    // }
-
 }

@@ -1,4 +1,4 @@
-import { Injectable, Inject, InjectionToken } from "@angular/core";
+﻿import { Injectable, Inject, InjectionToken } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError} from "rxjs";
 import { Product } from "./product.model";
@@ -35,6 +35,7 @@ export class RestDataSource {
             {
                 body: body,
                 headers: myHeaders
-            }).pipe(delay(5000)).pipe(catchError((error: Response) => throwError(`Network Error: ${error.statusText} (${error.status})`)));
+            })//.pipe(delay(5000))
+            .pipe(catchError((error: Response) => throwError(`Network Error: ${error.statusText} (${error.status})`)));
     }
 }
