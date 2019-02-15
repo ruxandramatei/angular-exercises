@@ -1,24 +1,30 @@
 import { Component, HostListener, Output, EventEmitter, Input } from "@angular/core";
 import { Model } from '../model/repository.model';
 import { Product } from '../model/product.model';
+import { RestDataSource } from '../model/rest.datasource';
 
 @Component({
     selector: "first",
-    template: "first.component.html"
+    templateUrl: "first.component.html"
 })
 export class FirstComponent {
-
-    constructor(private repository: Model) {
-
-    }
-
-    category: string = "Soccer";
+    _category: string = "Soccer";
+    _products: Product[] = [];
     highlighted: boolean = false;
-    @Input("pa-model")
-    model: Model;
-
-    getProducts(): Product[] {
-        return this.model == null ? [] : this.repository.getProducts().filter(p => p.category == this.category);
+    constructor(public datasource: RestDataSource) { }
+    ngOnInit() {
+        this.updateData();
     }
-
+    getProducts(): Product[] {
+        return this._products;
+    }
+    set category(newValue: string) {
+        this._category;
+        this.updateData();
+    }
+    updateData() {
+        this.datasource.getData()
+            .subscribe(data => this._products = data
+                .filter(p => p.category == this._category));
+    }
 }
